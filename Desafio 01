@@ -1,0 +1,26 @@
+function calculadora(operacao, numero) {
+  switch (operacao) {
+    case "soma":
+      return numero + numero;
+    case "subtracao":
+      return numero - numero;
+    case "multiplicacao":
+      return numero * numero;
+    case "divisao":
+      return numero / numero;
+    case "fatorial":
+      if (numero < 0) {
+        return "O fatorial não está definido para números negativos.";
+      }
+      return `${numero}! = ${fatorial(numero)}`;
+    default:
+      return "Operação não reconhecida.";
+  }
+}
+
+// Exemplos de uso da calculadora
+console.log(calculadora("soma", 5)); // Retorna 10
+console.log(calculadora("subtracao", 3)); // Retorna 0
+console.log(calculadora("multiplicacao", 4)); // Retorna 16
+console.log(calculadora("divisao", 2)); // Retorna 1
+console.log(calculadora("fatorial", 5)); // Retorna "5! = 120"
