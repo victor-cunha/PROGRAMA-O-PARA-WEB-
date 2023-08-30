@@ -1,0 +1,50 @@
+function multiplicarMatrizes(matrizA, matrizB) {
+  const numLinhasA = matrizA.length;
+  const numColunasA = matrizA[0].length;
+  const numLinhasB = matrizB.length;
+  const numColunasB = matrizB[0].length;
+
+  // Verifica se é possível calcular a multiplicação
+  if (numColunasA !== numLinhasB) {
+    return "Não é possível calcular. O número de colunas de A não é igual ao número de linhas de B.";
+  }
+
+  // Inicializa a matriz resultante C com zeros
+  const matrizC = new Array(numLinhasA);
+  for (let i = 0; i < numLinhasA; i++) {
+    matrizC[i] = new Array(numColunasB).fill(0);
+  }
+
+  // Realiza a multiplicação das matrizes
+  for (let i = 0; i < numLinhasA; i++) {
+    for (let j = 0; j < numColunasB; j++) {
+      for (let k = 0; k < numColunasA; k++) {
+        matrizC[i][j] += matrizA[i][k] * matrizB[k][j];
+      }
+    }
+  }
+
+  return matrizC;
+}
+
+// Exemplo de uso
+const matrizA = [
+  [1, 2],
+  [3, 4],
+];
+
+const matrizB = [
+  [5, 6],
+  [7, 8],
+];
+
+const resultado = multiplicarMatrizes(matrizA, matrizB);
+
+if (typeof resultado === 'string') {
+  console.log(resultado);
+} else {
+  console.log("Resultado da multiplicação das matrizes:");
+  for (let i = 0; i < resultado.length; i++) {
+    console.log(resultado[i]);
+  }
+}
