@@ -1,0 +1,30 @@
+function palavrasDistintas(string) {
+  // Divide a string em palavras usando espaço como separador
+  const palavras = string.split(' ');
+
+  // Cria um objeto para armazenar as palavras distintas como chaves
+  const palavrasDistintasObj = {};
+
+  // Itera sobre as palavras e as adiciona ao objeto
+  for (let palavra of palavras) {
+    // Remove espaços em branco, pontuações e converte para minúsculas
+    palavra = palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '').toLowerCase();
+    
+    // Adiciona a palavra ao objeto se não estiver presente
+    if (!palavrasDistintasObj[palavra]) {
+      palavrasDistintasObj[palavra] = true;
+    }
+  }
+
+  // Converte o objeto em um array de palavras distintas
+  const palavrasDistintas = Object.keys(palavrasDistintasObj);
+
+  return palavrasDistintas;
+}
+
+// Exemplo de uso
+const texto = "Esta é uma frase com algumas palavras repetidas. Esta é uma frase.";
+
+const palavrasUnicas = palavrasDistintas(texto);
+
+console.log(palavrasUnicas);
