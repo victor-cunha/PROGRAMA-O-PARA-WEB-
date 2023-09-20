@@ -1,0 +1,42 @@
+// Função construtora para criar um objeto Aluno
+function Aluno(nome) {
+  this.nome = nome;
+  this.notas = [];
+
+  // Método para incluir notas
+  this.incluirNota = function (nota) {
+    this.notas.push(nota);
+  };
+
+  // Método para calcular a média das notas
+  this.calcularMedia = function () {
+    const total = this.notas.reduce((acc, nota) => acc + nota, 0);
+    return total / this.notas.length;
+  };
+
+  // Método para verificar se o aluno foi APROVADO ou REPROVADO
+  this.verificarStatus = function (callback) {
+    const media = this.calcularMedia();
+    if (media >= 7) {
+      callback(`${this.nome} foi APROVADO com média ${media.toFixed(2)}`);
+    } else {
+      callback(`${this.nome} foi REPROVADO com média ${media.toFixed(2)}`);
+    }
+  };
+}
+
+// Função de callback para exibir o status do aluno
+function exibirStatus(status) {
+  console.log(status);
+}
+
+// Criar um objeto Aluno
+const aluno1 = new Aluno('João');
+
+// Incluir notas para o aluno
+aluno1.incluirNota(8);
+aluno1.incluirNota(7);
+aluno1.incluirNota(6);
+
+// Verificar o status do aluno e exibir o resultado
+aluno1.verificarStatus(exibirStatus);
