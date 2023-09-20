@@ -1,0 +1,33 @@
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function recursiveInputAndPrint() {
+  rl.question('Digite 5 números separados por vírgula: ', (input) => {
+    const numbers = input.split(',').map(Number);
+
+    // Verificar se há exatamente 5 valores numéricos
+    if (numbers.length === 5 && numbers.every((num) => !isNaN(num))) {
+      console.log('Valores inseridos:', numbers);
+      rl.close();
+    } else {
+      // Encontrar valores não numéricos
+      const nonNumericValues = numbers.filter((num) => isNaN(num));
+
+      // Verificar se há menos ou mais valores do que o esperado
+      if (numbers.length !== 5) {
+        console.error(`Você inseriu ${numbers.length} valores, mas são necessários exatamente 5.`);
+      } else {
+        console.error('Os seguintes valores não são numéricos:', nonNumericValues);
+      }
+
+      // Chamar a função recursivamente
+      recursiveInputAndPrint();
+    }
+  });
+}
+
+recursiveInputAndPrint();
