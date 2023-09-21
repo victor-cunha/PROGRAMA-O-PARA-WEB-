@@ -1,0 +1,49 @@
+function Item(nome, preco) {
+  this.nome = nome;
+  this.preco = preco;
+}
+
+// Constructor function para criar o carrinho de compras
+function CarrinhoDeCompras() {
+  this.itens = [];
+
+  // Método para adicionar um item ao carrinho
+  this.adicionarItem = function (item) {
+    this.itens.push(item);
+  };
+
+  // Método para calcular o valor total da compra
+  this.calcularTotal = function (descontoCallback) {
+    let total = 0;
+    for (const item of this.itens) {
+      total += item.preco;
+    }
+
+    if (descontoCallback && typeof descontoCallback === 'function') {
+      total = descontoCallback(total);
+    }
+
+    return total;
+  };
+}
+
+// Função de exemplo para aplicar um desconto de 10%
+function aplicarDesconto(total) {
+  return total * 0.9; // Desconto de 10%
+}
+
+// Exemplo de uso do sistema
+const item1 = new Item('Arroz', 5.0);
+const item2 = new Item('Feijão', 3.0);
+const item3 = new Item('Leite', 2.0);
+
+const carrinho = new CarrinhoDeCompras();
+carrinho.adicionarItem(item1);
+carrinho.adicionarItem(item2);
+carrinho.adicionarItem(item3);
+
+const totalSemDesconto = carrinho.calcularTotal();
+const totalComDesconto = carrinho.calcularTotal(aplicarDesconto);
+
+console.log('Total sem desconto:', totalSemDesconto);
+console.log('Total com desconto:', totalComDesconto);
